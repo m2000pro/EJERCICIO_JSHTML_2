@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segundo Ejercicio</title>
+    
+    <script>
+        var x=new Array(1000);
+        var i=0;
+
+        function agregar(){
+            var numCad=document.form.numero.value;
+            var numero=parseInt(numCad);
+            x[i]=numero;
+            i++;
+            document.form.reset();
+            document.form.numero.focus();
+        }
+        function mostrar(){
+            var acum="";
+            for(var j=0; j<i;j++){
+                acum=acum+x[j]+"\n";
+                document.form.textarea.value=acum;
+            }
+            
+        }
+        function ordenar(){
+            var aux=0;
+            for(var w=0;w<i;w++)
+            {for(var h=0;h<i;h++)
+                {
+                  if(x[w]<x[h])
+                    {   aux=x[w];
+                        x[w]=x[h];
+                        x[h]=aux;
+                    }  
+                }
+            }
+        }
+        function buscar(){
+            var flag=-1;
+            var buscarNumero=prompt("Buscar Numero","");
+
+            for(var w=0;w<i;w++)
+            {   if(x[w]==parseInt(buscarNumero))
+                {
+                    flag=1;
+                    break;
+                }   
+            }
+            if(flag==1){
+                    alert("Se Encontró!!");
+                }else{alert("No se Encontró!!");}
+        }
+        function modificar(){
+            var flag=-1;
+            var buscarNumero=prompt("Buscar Numero","");
+            for(var w=0;w<i;w++)
+            {
+                if(x[w]==parseInt(buscarNumero)){
+                    flag=1;
+                    var buscarNumeroModificado=prompt("Modificar Numero","");
+                    x[w]=buscarNumeroModificado;
+                    break;
+                }   
+            }
+            if(flag===1){
+                alert("Número MODIFICADO");
+            }else{alert("Número NO MODIFICADO");}
+        }
+
+    </script>
+    <style>
+        h2{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            font-weight: bold; 
+            color: coral;
+            text-decoration: underline;
+        }
+        table{
+            background-color:cadetblue;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            color:aliceblue;
+        }
+        .boton input{
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h2>Formulario en linea2-FLASK</h2>
+        <form name="form">
+            <table width="200" border="1">
+                <tr>
+                    <td>Agregue número</td>
+                    <td><input name="numero" type="text"></td>
+                </tr>
+            </table>
+            <br>
+            <table class="boton" width="200" border="1">
+                <tr>
+                    <td><input value="agregar" type="button" onClick="agregar()"></td>
+                    <td><input value="Mostrar" type="button" onClick="mostrar()"></td>
+                </tr>
+                <tr>
+                    <td><input value="Ordenar" type="button" onClick="ordenar()"></td>
+                    <td><input value="Buscar" type="reset" onClick="buscar()"></td>
+                </tr>
+                <tr>
+                    <td><input value="Modificar" type="button" onClick="modificar()"></td>
+                    <td><input value="Limpiar" type="reset" ></td>
+                </tr>
+            </table>
+            <br>
+
+            <textarea name="textarea" cols="30" rows="10">
+            </textarea>
+        </form>
+    </center>
+</body>
+</html>
